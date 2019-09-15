@@ -7,6 +7,8 @@ jobs:
           FLASK_CONFIG: testing
     working_directory: ~/repo
     steps:
+      - checkout
+
       # Download and cache dependencies
       - restore_cache:
           keys:
