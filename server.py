@@ -55,7 +55,9 @@ def paginate(results, page):
         and the an integer giving the highes passible page
         number given the list of results
     """
-    paginated_results = [result for index, result in enumerate(results) if page * PAGE_SIZE <= index < (page + 1) * PAGE_SIZE]
+    # Filter out the results, sorted by the entry id
+    sorted_results = sorted(results, key = lambda kv: kv['id'])
+    paginated_results = [result for index, result in enumerate(sorted_results) if page * PAGE_SIZE <= index < (page + 1) * PAGE_SIZE]
     last_page = math.ceil(len(results) / PAGE_SIZE) - 1 if len(results) > 0 else 0
     return paginated_results, last_page
 
@@ -131,7 +133,9 @@ def find_recipe_by_cuisine():
 
     args = request.args.to_dict()
     if 'q' in args:
+        # Only these keys to return in the end
         keys_to_keep = ["id", "title", "marketing_description"]
+        # Go through the "database", filter out the entries that much the query, and only keep the relevant keys defined above
         search_results = [{f:v[f] for f in v if f in keys_to_keep} for k, v in DB.items() if v['recipe_cuisine'] == args['q']]
     else:
         abort(HTTP_BAD_REQUEST, "No query provided")

@@ -213,6 +213,8 @@ There is **no authentication** on the update endpoint at the moment, that should
 
 There's **no recipe creation/deletion endpoint** at the moment, these chould be added as extra `POST` requests on `/recipe` and `DELETE` on `/recipe/<id>` endpoints
 
+The **recipe `<id>` values seem numeric** but since there are no spec guarantees on that (it could be any unique value in practice), it wasn't really taken into account that they should integers. If that's specified, a number of extra checks can be added.
+
 ## Extra information
 
 The project is tested on CircleCI and pushed to [Docker Hub: `imrehg/gousto_backend`](https://cloud.docker.com/repository/docker/imrehg/gousto_backend) on success.
