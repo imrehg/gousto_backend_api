@@ -37,7 +37,7 @@ def update_field(client, id, update):
     resp_original = client.get(f'/recipe/{id}')
     original_recipe = resp_original.get_json()
     # Do the requested update
-    resp = client.open(f'/recipe/{id}', method='UPDATE', json=update)
+    resp = client.patch(f'/recipe/{id}', json=update)
     assert resp.is_json
     assert resp.status_code == server.HTTP_OK
     # The response contains the updated field
@@ -73,12 +73,12 @@ def test_update_recipe_multiple_fields(client):
 
 def test_update_recipe_id(client):
     """Test updating a recipe's ID"""
-    resp = client.open('/recipe/1', method='UPDATE', json={'id': '2'})
+    resp = client.patch('/recipe/1', json={'id': '2'})
     assert resp.status_code == server.HTTP_BAD_REQUEST
 
 def test_update_recipe_invalid_field(client):
     """Test updating an invalid field"""
-    resp = client.open('/recipe/1', method='UPDATE',json={'random': 'xxxx'})
+    resp = client.patch('/recipe/1', json={'random': 'xxxx'})
     assert resp.status_code == server.HTTP_BAD_REQUEST
 
 def test_post_recipe(client):

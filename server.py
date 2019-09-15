@@ -76,7 +76,7 @@ def resource_not_found(e):
 def method_not_allowed(e):
     return jsonify(error=str(e)), HTTP_METHOD_NOT_ALLOWED
 
-@app.route('/recipe/<recipe_id>',  methods = ['GET', 'UPDATE'])
+@app.route('/recipe/<recipe_id>',  methods = ['GET', 'PATCH'])
 def find_recipe_by_id(recipe_id):
     """Action on recipes by ID, either to look up,
     or modify fields of.
@@ -97,7 +97,7 @@ def find_recipe_by_id(recipe_id):
             abort(HTTP_NOT_FOUND, "No recipe by this ID.")
 
     # Updating a recipe
-    if request.method == 'UPDATE':
+    if request.method == 'PATCH':
         if not request.is_json:
             abort(HTTP_BAD_REQUEST, "Need JSON to update.")
         try:
