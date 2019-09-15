@@ -40,7 +40,7 @@ jobs:
           name: Run Tests
           command: |
             . venv/bin/activate
-            pytest
+            pytest -W ignore::DeprecationWarning
 
       - setup_remote_docker:
           docker_layer_caching: true

@@ -1,5 +1,7 @@
 # Simple recipes server
 
+[![CircleCI](https://circleci.com/gh/imrehg/gousto_backend_api.svg?style=svg)](https://circleci.com/gh/imrehg/gousto_backend_api)
+
 This repository implements the **Backend API Technical Challenge** as outlined in the [Backend API Technical Challenge - Instructions](./Backend API Technical Challenge - Instructions.pdf) file.
 
 ## Outline
@@ -212,3 +214,5 @@ There is **no authentication** on the update endpoint at the moment, that should
 There's **no recipe creation/deletion endpoint** at the moment, these chould be added as extra `POST` requests on `/recipe` and `DELETE` on `/recipe/<id>` endpoints
 
 ## Extra information
+
+The project is tested on CircleCI and pushed to [Docker Hub: `imrehg/gousto_backend`](https://cloud.docker.com/repository/docker/imrehg/gousto_backend) on success.
